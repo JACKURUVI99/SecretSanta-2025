@@ -1,4 +1,4 @@
-# 🎅 SecretSanta-2025: The Ultimate Winter Gift Exchange 🎄
+# 🎅 SecretSanta-2025 🎄
 
 <div align="center">
 
