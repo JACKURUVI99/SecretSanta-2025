@@ -1,0 +1,31 @@
+steps:
+  # Build the container image with build arguments
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '--build-arg'
+      - 'VITE_SUPABASE_URL=${_VITE_SUPABASE_URL}'
+      - '--build-arg'
+      - 'VITE_SUPABASE_ANON_KEY=${_VITE_SUPABASE_ANON_KEY}'
+      - '--build-arg'
+      - 'VITE_DAUTH_CLIENT_ID=${_VITE_DAUTH_CLIENT_ID}'
+      - '--build-arg'
+      - 'VITE_DAUTH_CLIENT_SECRET=${_VITE_DAUTH_CLIENT_SECRET}'
+      - '--build-arg'
+      - 'VITE_DAUTH_REDIRECT_URI=${_VITE_DAUTH_REDIRECT_URI}'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/secret-santa:latest'
+      - '.'
+  
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/secret-santa:latest'
+
+images:
+  - 'gcr.io/$PROJECT_ID/secret-santa:latest'
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY

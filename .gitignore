@@ -21,3 +21,8 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env.*
+backend/.env
+frontend/.env
+deploy_package
+

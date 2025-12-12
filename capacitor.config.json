@@ -1,0 +1,16 @@
+{
+    "appId": "com.eee.secretsanta",
+    "appName": "SecretSanta 2025",
+    "webDir": "dist",
+    "server": {
+        "url": "https://secret-santa-app-609187459872.asia-south1.run.app",
+        "cleartext": true
+    },
+    "android": {
+        "buildOptions": {
+            "keystorePath": "",
+            "keystoreAlias": "",
+            "releaseType": "APK"
+        }
+    }
+}

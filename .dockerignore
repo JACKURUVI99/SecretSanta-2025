@@ -1,0 +1,9 @@
+node_modules
+# dist - we WANT to upload dist now!
+# dist
+.git
+.DS_Store
+# .env is required for Vite build time variables!
+# .env 
+coverage
+.vscode

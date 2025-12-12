@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: secretsanta-web
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      # VITE vars are baked in at build time, so ensure your .env file is correct before building!
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_DAUTH_CLIENT_ID=${VITE_DAUTH_CLIENT_ID}
+      - VITE_DAUTH_CLIENT_SECRET=${VITE_DAUTH_CLIENT_SECRET}
+      - VITE_DAUTH_REDIRECT_URI=${VITE_DAUTH_REDIRECT_URI}

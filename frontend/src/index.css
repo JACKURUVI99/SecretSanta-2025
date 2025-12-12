@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Outfit', sans-serif;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">❄️</text></svg>'), auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Mountains of Christmas', cursive;
+  font-weight: 700;
+  color: black;
+}
+
+
+
+@layer utilities {
+  /* ... existing utilities ... */
+
+  /* North Pole Comic Utilities */
+  .comic-box {
+    background-color: white;
+    border: 4px solid black;
+    box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .comic-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  .comic-box:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  .comic-red {
+    background-color: #FF3B30;
+    color: white;
+  }
+
+  .comic-green {
+    background-color: #2ECC71;
+    color: white;
+  }
+
+  .comic-yellow {
+    background-color: #FFCC00;
+    color: black;
+  }
+
+  .paper-texture {
+    background-color: #fffcf5;
+    /* Subtle noise only, no grid lines */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  /* Stamp Effect */
+  .stamp {
+    position: relative;
+    display: inline-block;
+    color: #C41E3A;
+    padding: 0.25rem 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    text-transform: uppercase;
+    border: 4px solid #C41E3A;
+    mask-image: url("data:image/svg+xml,%3Csvg width='200' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+    transform: rotate(-10deg);
+    opacity: 0.8;
+  }
+
+
+
+  /* Text Shadows - Removed for clarity */
+  .text-shadow-sm {
+    text-shadow: none;
+  }
+
+  .text-shadow-md {
+    text-shadow: none;
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up-bounce {
+    animation: slideUpBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-stamp-in {
+    animation: stampIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes slideUpBounce {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes snow {
+  0% {
+    background-position: 0px 0px, 0px 0px;
+  }
+
+  100% {
+    background-position: 500px 1000px, 400px 400px;
+    opacity: 0.8;
+  }
+}
+
+@keyframes stampIn {
+  from {
+    opacity: 0;
+    transform: scale(3) rotate(0deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-10deg);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes title-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes jingle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.animate-rubber {
+  animation: rubberBand 1s forwards;
+}
