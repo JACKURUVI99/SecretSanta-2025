@@ -169,4 +169,4 @@ Visit `http://localhost:5174` and enjoy!
 
 ---
 
-🌟 *Made with ❤️ and TypeScript for the Holidays* 🌟
+🌟 *Made with ❤️ HarishAnnavisamy" 🌟
