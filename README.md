@@ -60,7 +60,7 @@ graph TD
 ### 👨‍💻 Admin Workflow
 ```mermaid
 graph TD
-    A[Admin Login] --> B[Hacker Console Access]
+    A[Admin Login] 
     
     subgraph "🖥️ Admin Terminal"
         B --> C[User Management]
@@ -102,7 +102,7 @@ Since we can't embed real-time screenshots in a markdown file easily, here is a 
 +--------------------------------------------------+
 ```
 
-### **Admin View: Hacker Console**
+### **Admin View
 ```text
 +--------------------------------------------------+
 |  >_ ADMIN_CONSOLE_v2.0               [EXIT]      |
