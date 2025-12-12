@@ -27,7 +27,7 @@ This application manages the entire Secret Santa lifecycle, from registration to
 - **Chat**: Discuss anonymously (or not) in the global chat.
 - **The Reveal**: On the special day, click the card to reveal your Giftee!
 
-### 2. 👨‍💻 For Admins (The "Hacker" Console)
+### 2. 👨‍💻 For Admins 
 - **Hacker Theme**: A stark contrast to the user view—Dark Mode, Neon Green text, Terminal font.
 - **Control Center**: Manage users, pairings, and game settings.
 - **Task Builder**: Create new daily/bonus tasks with a drag-and-drop style builder.
