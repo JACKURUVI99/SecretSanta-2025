@@ -6,8 +6,8 @@
 ![Status](https://img.shields.io/badge/Status-Review%20Ready-success?style=for-the-badge)
 ![Tech](https://img.shields.io/badge/Built%20With-React%20%7C%20Supabase%20%7C%20Vite-blue?style=for-the-badge)
 
-*A magical, full-stack gift exchange platform built for the EEE Department, NIT Trichy.*
-*Featuring Real-time Chat, Mini-Games, and a "Hacker-style" Admin Console.*
+*A magical, full-stack gift exchange platform.*
+*Featuring Real-time Chat, Mini-Games, and a Admin Console.*
 
 ❄️ **[ [LAUNCH APPLICATION](https://secretsanta-2025.web.app) ]** ❄️
 
