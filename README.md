@@ -133,7 +133,7 @@ Dual-layer messaging for privacy and community.
 *   **Global Chat**: Public room for all batchmates to banter.
 *   **Santa Chat**: **Anonymous** 1-on-1 channel. Santa can message their Target without revealing their identity.
 
-### 🛡️ Admin God Mode
+### 🛡️ Admin 
 Complete control over the game state.
 *   **Maintenance Mode**: Lock the app for updates.
 *   **Force Reveal**: Trigger the final event where everyone sees their Santa.
@@ -185,7 +185,6 @@ A closer look under the hood of our winter engine.
 
 ---
 
-## 🎅 Credits
 
 Built with ❄️, ☕, and a lot of 🍪 by **HarishAnnavisamy!!**.
 
