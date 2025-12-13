@@ -17,6 +17,8 @@ h6 {
   font-family: 'Mountains of Christmas', cursive;
   font-weight: 700;
   color: black;
+  letter-spacing: 0.05em;
+  /* Added tracking for poster look */
 }
 
 
@@ -229,4 +231,24 @@ h6 {
 
 .animate-rubber {
   animation: rubberBand 1s forwards;
+}
+
+/* Abeto Winter Theme Utilities - REVERTED TO SHARP POSTER STYLE */
+.font-hand {
+  font-family: 'Outfit', sans-serif;
+  /* Back to clean font */
+}
+
+.border-sketch {
+  border-radius: 0px;
+  /* Sharp corners for Poster look */
+  border: 4px solid black;
+}
+
+.shadow-hard {
+  box-shadow: 6px 6px 0px 0px black;
+}
+
+.bg-winter-teal {
+  background: linear-gradient(135deg, #40E0D0 0%, #87CEEB 100%);
 }

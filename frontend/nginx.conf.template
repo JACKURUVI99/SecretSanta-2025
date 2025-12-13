@@ -1,0 +1,28 @@
+server {
+    listen ${PORT};
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Proxy API requests to the Backend Service
+    # We use a variable for the upstream to prevent Nginx from crashing if the host is down at startup,
+    # though envsubst replaces it before Nginx starts, so it's a static string in the conf.
+    location /api/ {
+        # Resolver needed for variable proxy_pass (Google DNS)
+        resolver 8.8.8.8;
+        
+        proxy_pass ${VITE_API_BASE_URL};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $proxy_host; # Important: Upstream Host, not client Host
+        proxy_cache_bypass $http_upgrade;
+        
+        # SSL/SNI Support for Cloud Run Upstreams
+        proxy_ssl_server_name on;
+    }
+
+    # Handle SPA routing
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

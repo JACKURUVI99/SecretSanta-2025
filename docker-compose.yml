@@ -7,15 +7,7 @@ services:
     ports:
       - "8080:80"
     environment:
-      # These variables must be provided at runtime or in a .env file
-      # Since Vite bakes env vars at build time, for a truly dynamic docker image
-      # we usually need distinct builds per environment OR use a runtime config solution.
-      # For now, we assume the .env file is present during the BUILD stage (in Dockerfile COPY . .)
-      # If you want to override them at runtime, you'd need a different approach (e.g. entrypoint.sh).
+
       - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
       - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
     restart: always
-
-# Note: Since this is a Vite Static App, environment variables starting with VITE_
-# are actually embedded into the JS files during `pnpm build`.
-# Changing them in docker-compose AFTER build will NOT work unless you rebuild.

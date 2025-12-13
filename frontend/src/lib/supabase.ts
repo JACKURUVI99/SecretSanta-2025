@@ -1,6 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+// Fallback to avoid crash if env vars are missing (e.g. during migration)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "https://placeholder.supabase.co";
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "placeholder-key";
+
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export type Profile = {
   id: string;
@@ -14,7 +17,10 @@ export type Profile = {
   created_at: string;
   updated_at: string;
   is_banned?: boolean;
+  ban_reason?: string;
+  last_seen?: string;
   instagram_id?: string;
+  bypass_maintenance?: boolean;
 };
 export type Pairing = {
   id: string;
@@ -38,27 +44,39 @@ export type UserTask = {
   completed: boolean;
   completed_at: string | null;
 };
-export type AppSettings = {
-  id: string;
+// AppSettings was replaced below
+export interface AppSettings {
+  id: number;
+  // Core Settings (Restored)
   gifting_day: string;
   registration_open: boolean;
-  show_kollywood: boolean;
-  show_mollywood: boolean;
-  show_tollywood: boolean;
-  show_bollywood: boolean;
-  show_hollywood: boolean;
   show_bonus_tasks: boolean;
   show_leaderboard: boolean;
   show_news: boolean;
   show_secret_santa: boolean;
   show_gifting_day: boolean;
+  maintenance_mode: boolean;
+  secret_santa_reveal: boolean;
+
+  // Games
   show_games: boolean;
   show_tictactoe: boolean;
   show_memory_game: boolean;
-  maintenance_mode: boolean;
-  secret_santa_reveal: boolean;
-  updated_at: string;
-};
+  show_santa_run: boolean;
+  show_flappy_santa: boolean;
+  show_kollywood: boolean;
+  show_mollywood?: boolean;
+  show_tollywood?: boolean;
+  show_bollywood?: boolean;
+  show_hollywood?: boolean;
+  show_jumbled_words: boolean;
+  show_crossword: boolean;
+  show_bad_description: boolean;
+  show_bingo: boolean;
+
+  // Rules
+  game_rules_active: boolean;
+}
 export type BonusTask = {
   id: string;
   title: string;

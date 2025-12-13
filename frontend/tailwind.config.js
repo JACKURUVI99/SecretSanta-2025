@@ -3,6 +3,11 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        mountains: ['"Mountains of Christmas"', 'cursive'],
+        outfit: ['"Outfit"', 'sans-serif'],
+        hand: ['"Patrick Hand"', 'cursive'],
+      },
       animation: {
         'fall': 'fall linear infinite',
       },

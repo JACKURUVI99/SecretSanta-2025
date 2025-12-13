@@ -13,7 +13,7 @@ const SANTA_RESPONSES: Record<string, { text: string, highlight?: string }> = {
     'hello': { text: "Merry Christmas! 🎄 I am Santa AI, your magical assistant. How can I help?" },
     'hi': { text: "Hello there! I am Santa AI. Ready to explore?" },
     'who are you': { text: "I am Santa AI! 🎅 A digital elf helper sitting on your screen." },
-    'what is this': { text: "This is the Secret Santa 2025 platform for NIT Trichy EEE Dept!" },
+    'what is this': { text: "This is the Secret Santa 2025 platform for NIT Trichy!" },
     'why': { text: "I am a new feature designed to guide you. I can point out buttons and explain rules! 👉" },
     'new': { text: "Yes, I am brand new! Fresh from the North Pole (server)." },
     'creator': { text: "I was created by Harish Annavisamy! He coded my Christmas Spirit. 👨‍💻" },
@@ -55,64 +55,22 @@ export function useSantaAI() {
     const [isTyping, setIsTyping] = useState(false);
 
     const callGroqAI = async (userPrompt: string): Promise<{ text: string, highlight?: string }> => {
-        const apiKey = import.meta.env.VITE_GROQ_API_KEY;
-        if (!apiKey) return { text: "NULL_KEY" }; // Signal to use mock
-
+        // Use Backend Proxy
         try {
-            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    messages: [
-                        {
-                            role: "system",
-                            content: `You are Santa AI, a magical helper for the Secret Santa 2025 app created by Harish Annavisamy. 
-                            Your goal is to guide users. 
-                            If the user asks about "Tasks", "Leaderboard", "Profile", "Games", or "Chat", you MUST append a JSON object to the end of your response like this: {"highlight": "element-id"}.
-                            
-                            IDs:
-                            - Tasks: "tasks-tab-btn"
-                            - Leaderboard: "leaderboard-btn"
-                            - Profile: "profile-btn"
-                            - Global Chat: "global-chat-btn"
-                            
-                            Keep responses short, joyful, and use emojis like 🎅, 🎄, 🎁.`
-                        },
-                        { role: "user", content: userPrompt }
-                    ],
-                    model: "llama-3.1-8b-instant", // Updated to latest stable model
-                    temperature: 0.7,
-                })
-            });
+            // We need the auth token for the backend call!
+            // Actually, verifyToken middleware requires it.
+            // But this hook doesn't have easy access to `api` helper or token directly unless we use `api.ts`.
+            // Let's use the `api` helper if possible, or fetch with token from session.
+            // Since `useSantaAI` is a hook, let's use `apiFetch` style or just use `auth` context if available?
+            // Easier: import `api` from lib/api.ts
 
-            if (!response.ok) {
-                const errData = await response.json();
-                console.error("Groq API Error:", errData);
-                return { text: `⚠️ Elf Error: ${errData.error?.message || response.statusText}` };
-            }
+            // Dynamic import to avoid cycles? No, lib/api is safe.
+            const { api } = await import('../lib/api');
+            const result = await api.chatWithAI(userPrompt);
+            return result;
 
-            const data = await response.json();
-            const fullContent = data.choices[0]?.message?.content || "Ho Ho Ho! The North Pole signals are weak!";
-
-            // Extract highlight JSON if present
-            let text = fullContent;
-            let highlight = undefined;
-
-            // Simple extraction logic for the custom format we requested
-            const match = fullContent.match(/\{"highlight":\s*"([^"]+)"\}/);
-            if (match) {
-                highlight = match[1];
-                text = fullContent.replace(match[0], '').trim();
-            }
-
-            return { text, highlight };
-
-        } catch (error) {
-            console.error("Network/API Error:", error);
-            // Fallback to mock if API fails fundamentally
+        } catch (error: any) {
+            console.error("AI Error:", error);
             return { text: "My reindeer ate the internet cable! 🦌 (Network Error)" };
         }
     };
@@ -122,45 +80,17 @@ export function useSantaAI() {
         setMessages(prev => [...prev, userMsg]);
         setIsTyping(true);
 
-        const apiKey = import.meta.env.VITE_GROQ_API_KEY;
-
-        if (apiKey) {
-            // REAL AI MODE
-            const { text, highlight } = await callGroqAI(content);
-            const santaMsg: ChatMessage = {
-                id: (Date.now() + 1).toString(),
-                role: 'santa',
-                content: text,
-                highlightId: highlight
-            };
-            setMessages(prev => [...prev, santaMsg]);
-            setIsTyping(false);
-            triggerHighlight(highlight);
-        } else {
-            // MOCK MODE (Fallback)
-            setTimeout(() => {
-                const lowerContent = content.toLowerCase();
-                let response = SANTA_RESPONSES['default'];
-
-                for (const key in SANTA_RESPONSES) {
-                    if (lowerContent.includes(key) && key !== 'default') {
-                        response = SANTA_RESPONSES[key];
-                        break;
-                    }
-                }
-
-                const santaMsg: ChatMessage = {
-                    id: (Date.now() + 1).toString(),
-                    role: 'santa',
-                    content: response.text,
-                    highlightId: response.highlight
-                };
-
-                setMessages(prev => [...prev, santaMsg]);
-                setIsTyping(false);
-                triggerHighlight(response.highlight);
-            }, 1000);
-        }
+        // Always use Backend Proxy for AI
+        const { text, highlight } = await callGroqAI(content);
+        const santaMsg: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            role: 'santa',
+            content: text,
+            highlightId: highlight
+        };
+        setMessages(prev => [...prev, santaMsg]);
+        setIsTyping(false);
+        triggerHighlight(highlight);
     }, []);
 
     const triggerHighlight = (id?: string) => {

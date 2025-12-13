@@ -1,4 +1,4 @@
-echo "🚀 Deploying Secret Santa (Split Architecture) to Google Cloud Run..."
+echo " Deploying Secret Santa (Split Architecture) to Google Cloud Run..."
 
 # --- 1. CONFIGURATION ---
 REGION="asia-south1"
@@ -8,20 +8,20 @@ FRONTEND_SERVICE="secret-santa-frontend"
 # Check gcloud
 gcloud --version &> /dev/null
 if [ $? -ne 0 ]; then
-    echo "❌ Error: 'gcloud' command not found."
+    echo " Error: 'gcloud' command not found."
     exit 1
 fi
 
-echo "🔍 Checking authentication..."
+echo " Checking authentication..."
 gcloud auth print-identity-token &> /dev/null
 if [ $? -ne 0 ]; then
-    echo "⚠️ Not logged in. Running 'gcloud auth login'..."
+    echo "Not logged in. Running 'gcloud auth login'..."
     gcloud auth login
 fi
 
 # --- 2. DEPLOY BACKEND ---
 echo "------------------------------------------------"
-echo "📦 Deploying BACKEND Service ($BACKEND_SERVICE)..."
+echo " Deploying BACKEND Service ($BACKEND_SERVICE)..."
 echo "------------------------------------------------"
 cd backend
 
@@ -35,31 +35,32 @@ gcloud run deploy $BACKEND_SERVICE \
     --env-vars-file .env
 
 if [ $? -ne 0 ]; then
-    echo "❌ Backend Deployment Failed!"
+    echo "Backend Deployment Failed!"
     exit 1
 fi
 
 # Get Backend URL
 BACKEND_URL=$(gcloud run services describe $BACKEND_SERVICE --platform managed --region $REGION --format 'value(status.url)')
-echo "✅ Backend Deployed Successfully at: $BACKEND_URL"
+echo "Backend Deployed Successfully at: $BACKEND_URL"
 
 # --- 3. DEPLOY FRONTEND ---
 echo "------------------------------------------------"
-echo "🎨 Deploying FRONTEND Service ($FRONTEND_SERVICE)..."
+echo "Deploying FRONTEND Service ($FRONTEND_SERVICE)..."
 echo "------------------------------------------------"
 cd ../frontend
 
 # Create a temporary production .env for the build
 echo "   > Configuring Frontend environment..."
 # We need to inject the REAL backend URL into the frontend build
-# Assuming the user wants to use the just-deployed backend.
-# If .env exists, we append/replace the API_BASE_URL.
-if [ -f .env ]; then
-    grep -v "VITE_API_BASE_URL" .env > .env.prod.tmp
-    echo "VITE_API_BASE_URL=$BACKEND_URL" >> .env.prod.tmp
-else
-    echo "VITE_API_BASE_URL=$BACKEND_URL" > .env.prod.tmp
-fi
+    # We inject an EMPTY URL to force the frontend to use relative paths (e.g. /api/...)
+    # This ensures requests go to Nginx first, which then proxies them to $BACKEND_URL.
+    # This solves CORS issues and NetworkErrors.
+    if [ -f .env ]; then
+        grep -v "VITE_API_BASE_URL" .env > .env.prod.tmp
+        echo "VITE_API_BASE_URL=" >> .env.prod.tmp
+    else
+        echo "VITE_API_BASE_URL=" > .env.prod.tmp
+    fi
 
 # Rename just for the deploy command (gcloud build uses local files)
 mv .env .env.bak
@@ -75,12 +76,13 @@ echo "   > Deploying to Cloud Run (Builds Dockerfile)..."
 # gcloud run deploy --source . uploads the directory. The Dockerfile RUN npm run build will run.
 # It will use the .env in the directory.
 
+# Deploy Frontend (US-Central1 for Domain Mapping Support)
 gcloud run deploy $FRONTEND_SERVICE \
     --source . \
     --platform managed \
-    --region $REGION \
+    --region us-central1 \
     --allow-unauthenticated \
-    --port 80
+    --set-env-vars VITE_API_BASE_URL=$BACKEND_URL
 
 DEPLOY_STATUS=$?
 
@@ -88,14 +90,14 @@ DEPLOY_STATUS=$?
 mv .env.bak .env
 
 if [ $DEPLOY_STATUS -ne 0 ]; then
-    echo "❌ Frontend Deployment Failed!"
+    echo "Frontend Deployment Failed!"
     cd ..
     exit 1
 fi
 
 cd ..
 echo "------------------------------------------------"
-echo "🎉 DEPLOYMENT COMPLETE!"
+echo "DEPLOYMENT COMPLETE!"
 echo "------------------------------------------------"
 echo "Backend:  $BACKEND_URL"
 echo "Frontend: $(gcloud run services describe $FRONTEND_SERVICE --platform managed --region $REGION --format 'value(status.url)')"

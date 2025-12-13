@@ -1,7 +1,7 @@
 {
-    "name": "SecretSanta 2025 - EEE",
+    "name": "SecretSanta 2025 - NIT Trichy",
     "short_name": "SecretSanta",
-    "description": "Secret Santa gift exchange platform for EEE Department, NIT Trichy",
+    "description": "Secret Santa gift exchange platform for NIT Trichy",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#E0E7FF",

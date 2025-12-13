@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase, Profile } from '../lib/supabase';
+import { api } from '../lib/api';
 interface AuthContextType {
   user: User | null;
   profile: Profile | null;
@@ -8,7 +9,7 @@ interface AuthContextType {
   isAdmin: boolean;
   signIn: (email: string, password: string) => Promise<any>;
   signUp: (email: string, password: string, name: string, rollNumber: string) => Promise<any>;
-  signOut: () => Promise<void>;
+  logout: () => Promise<void>;
   refreshProfile: () => Promise<void>;
   updateProfile: (updates: Partial<Profile>) => Promise<void>;
   dbError: string | null; // New field for critical DB errors
@@ -123,6 +124,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // We must check if we have a session now (from initial signup or force login)
       const { data: currentSession } = await supabase.auth.getSession();
       if (currentSession?.session) {
+        // LOG SIGNUP
+        api.logUserAction('SIGNUP', { email, name, rollNumber }).catch(console.error);
+
         const { error: profileError } = await supabase
           .from('profiles')
           .upsert({
@@ -146,6 +150,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       password,
     });
     if (error) throw error;
+    // LOG LOGIN
+    api.logUserAction('LOGIN', { email }).catch(console.error);
   };
   const signOut = async () => {
     await supabase.auth.signOut();
@@ -176,7 +182,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isAdmin: profile?.is_admin || false,
     signIn,
     signUp,
-    signOut,
+    logout: signOut,
     refreshProfile: () => {
       if (user) return fetchProfile(user.id);
       return Promise.resolve();

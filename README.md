@@ -1,171 +1,195 @@
-# 🎅 SecretSanta-2025 🎄
+```text
+.  *    .        .      .       .      *     .      .  
+   .       *    .    *      .    _     .      *   .
+      *   .    .   .     .     _( )_    .      .   
+ .  .   __________  .  *      (_(%)_)     .    *  .
+     | S E C R E T |      .     (_)\      *     .
+ *   |  S A N T A  | .        .     |  .      .    .
+  .  |_____________|    *   .      |     .      * 
+```
+
+# 🎅 Secret Santa 2025: NITT 🎄
+> *“Coding in a Winter Wonder-LAN”*
 
 <div align="center">
 
-![Secret Santa Banner](https://img.shields.io/badge/Secret%20Santa-2025-red?style=for-the-badge&logo=gift&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Review%20Ready-success?style=for-the-badge)
-![Tech](https://img.shields.io/badge/Built%20With-React%20%7C%20Supabase%20%7C%20Vite-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Deployed-success?style=for-the-badge&logo=google-cloud&color=0F9D58)
+![Version](https://img.shields.io/badge/Version-2.0.26-blue?style=for-the-badge&color=4285F4)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge&color=F4B400)
+![Theme](https://img.shields.io/badge/Theme-Winter_Wonderland-red?style=for-the-badge&color=DB4437)
 
-*A magical, full-stack gift exchange platform.*
-*Featuring Real-time Chat, Mini-Games, and a Admin Console.*
+<br/>
 
-❄️ **[ [LAUNCH APPLICATION](https://secretsanta-2025.web.app) ]** ❄️
+### [🚀 **Launch App**](https://secretsantanitt25.site/) &nbsp; • &nbsp; [📚 **Tech Documentation**](https://secretsantanitt25.site/tech-docs)
+
+<br/>
+
+<div align="center">
+  <img src="./image1.png" width="80%" alt="Desktop View" />
+  <br/><br/>
+  <img src="./Image2.jpeg" width="30%" alt="Mobile View" />
+  <br/><br/>
+  <img src="./image.png" width="80%" alt="Leaderboard" />
+</div>
 
 </div>
 
 ---
 
-## 🎁 How It Works
+## 🎁 Project Overview
 
-This application manages the entire Secret Santa lifecycle, from registration to the final reveal!
+**Secret Santa 2025** is a highly interactive, gamified, and secure web application designed for the NIT Trichy community to celebrate the holiday season. Unlike traditional assignment scripts, this platform offers a comprehensive suite of features including **algorithmic pairing**, **anonymous messaging**, **real-time multiplayer games** (Tic-Tac-Toe, Beat the Grinch), and a **feature-rich Admin Dashboard**.
 
-### 1. 🦌 For Participants (The User)
-- **Login**: Use your NIT Trichy Webmail via Delta Auth (SSO) or standard email.
-- **Dashboard**: A "Winter Wonderland" interface with falling snow and serial lights.
-- **Tasks & Games**: Complete daily tasks (upload photos, answer quizzes) and play games (Tic-Tac-Toe, Memory Game) to earn points.
-- **Leaderboard**: Compete with others for the top spot!
-- **Chat**: Discuss anonymously (or not) in the global chat.
-- **The Reveal**: On the special day, click the card to reveal your Giftee!
-
-### 2. 👨‍💻 For Admins 
-- **Control Center**: Manage users, pairings, and game settings.
-- **Task Builder**: Create new daily/bonus tasks with a drag-and-drop style builder.
-- **Live Logs**: Watch user activity stream in real-time.
+The system is built on a **Hybrid Split-Container Architecture**, leveraging the best of Relational (PostgreSQL) and Document (MongoDB) databases to ensure data integrity and real-time performance.
 
 ---
 
-## � System Architecture & Flow
+## 🏗️ Technology Stack
 
-### 👤 User Workflow
+We use a curated stack of modern technologies, organized by their role in our split-container architecture.
+
+### 🎨 Frontend (The Sleigh)
+| Tech | Role | Description |
+| :--- | :--- | :--- |
+| **React 18** <br> <img src="https://skillicons.dev/icons?i=react&theme=light" width="30"/> | **Library** | Component-based UI with Virtual DOM for snappy performance. |
+| **TypeScript** <br> <img src="https://skillicons.dev/icons?i=ts&theme=light" width="30"/> | **Language** | Static typing to prevent runtime errors (like "undefined" gifts). |
+| **TailwindCSS** <br> <img src="https://skillicons.dev/icons?i=tailwind&theme=light" width="30"/> | **Styling** | Utility-first CSS for our "Neo-Brutalist" Christmas theme. |
+| **Vite** <br> <img src="https://skillicons.dev/icons?i=vite&theme=light" width="30"/> | **Build Tool** | Lightning-fast HMR and optimized production bundles. |
+
+### 🚀 Backend (The Elf Workshop)
+| Tech | Role | Description |
+| :--- | :--- | :--- |
+| **Node.js** <br> <img src="https://skillicons.dev/icons?i=nodejs&theme=light" width="30"/> | **Runtime** | Event-driven, non-blocking I/O runtime. |
+| **Express.js** <br> <img src="https://skillicons.dev/icons?i=express&theme=light" width="30"/> | **Framework** | Minimalist web framework for API routes and middleware. |
+| **Nginx** <br> <img src="https://skillicons.dev/icons?i=nginx&theme=light" width="30"/> | **Server** | High-performance reverse proxy and static file server. |
+
+### 🗄️ Data Layer (The Naughty/Nice List)
+| Tech | Role | Description |
+| :--- | :--- | :--- |
+| **Supabase** <br> <img src="https://skillicons.dev/icons?i=supabase&theme=light" width="30"/> | **Provider** | BaaS for PostgreSQL, Auth, and Realtime subscriptions. |
+| **PostgreSQL** <br> <img src="https://skillicons.dev/icons?i=postgres&theme=light" width="30"/> | **RDBMS** | Relational DB for User Profiles, Pairings, and Tasks. |
+| **DeltaAuth** <br> <img src="./DeltaForce.png" width="30"/> | **Auth** | Custom OAuth provider for NIT Trichy student verification. |
+
+### ☁️ DevOps (The Reindeer)
+| Tech | Role | Description |
+| :--- | :--- | :--- |
+| **Google Cloud** <br> <img src="https://skillicons.dev/icons?i=gcp&theme=light" width="30"/> | **Hosting** | Serverless Cloud Run (Region: asia-south1). |
+| **Docker** <br> <img src="https://skillicons.dev/icons?i=docker&theme=light" width="30"/> | **Container** | Consistent environment from Dev to Prod. |
+| **Bash** <br> <img src="https://skillicons.dev/icons?i=bash&theme=light" width="30"/> | **Scripting** | Automated deployment pipelines. |
+
+---
+
+## 🕯️ The Secret Santa Journey
+
+A complete walkthrough of the user experience, from the first snowflake to the final gift.
+
 ```mermaid
-graph TD
-    A[Start] --> B{Login Method}
-    B -->|NIT Trichy| C[Delta Auth SSO]
-    B -->|Guest| D[Email/Password]
-    C --> E[User Dashboard]
-    D --> E
+graph LR
+    Login([🔐 Login]) --> Waiting{⏳ Waiting Phase}
     
-    subgraph "❄️ Winter Wonderland Dashboard ❄️"
-        E --> F[Daily Tasks]
-        E --> G[Play Games]
-        E --> H[Global Chat]
-        E --> I[Leaderboard]
+    Waiting -->|Admin Pairs Users| Active[🎅 Active Phase]
+    
+    subgraph "Active Phase (2 Weeks)"
+        Active --> SeeTarget[🎯 View Giftee]
+        Active --> AnonChat[💬 Chat with Target]
+        Active --> Tasks[📝 Daily Tasks]
+        Active --> Games[🎮 Play Games]
+        Tasks --> Points[🪙 Earn Points]
+        Games --> Points
     end
     
-    F -->|Complete| J[Earn Points +4]
-    G -->|Win| K[Earn Points +5]
-    H -->|Chat| L[Realtime Updates]
+    Active -->|Reveal Day| Reveal([🎁 The Reveal])
+    Reveal --> Leaderboard([🏆 Final Ceremony])
 ```
 
-### 👨‍💻 Admin Workflow
-```mermaid
-graph TD
-    A[Admin Login] 
-    
-    subgraph "🖥️ Admin Terminal"
-        B --> C[User Management]
-        B --> D[Task Builder]
-        B --> E[Pairing Engine]
-        B --> F[System Settings]
-    end
-    
-    C -->|Ban/Delete| G[User DB]
-    D -->|Create| H[New Tasks]
-    E -->|Algorithm| I[Generate Pairs]
-    F -->|Toggle| J[Game Modules]
+### ❄️ Phase 1: The Gathering (Login)
+Users log in using **DeltaAuth** (NIT Trichy Student ID). They create a profile, choose a fun avatar, and fill out their "Preferences" (Likes/Dislikes) so their future Santa knows what to get them.
+
+### ❄️ Phase 2: The Elves' Work (Pairing)
+Admins execute the **Derangement Algorithm**.
+*   All valid users are shuffled.
+*   A directed graph is created: `A -> B -> C -> A`.
+*   System ensures `User != Target`.
+
+### ❄️ Phase 3: The Festivities (Active Game)
+*   **Giftee Reveal**: Users log in to see *who* they are buying for (but not who is buying for *them*).
+*   **Anonymous Chat**: Santa can message their target to ask for specifics (e.g., "Do you like Dark Chocolate?") without revealing their identity.
+*   **Points Race**: Users complete daily tasks ("Take a selfie with a Reindeer") and play games to top the leaderboard.
+
+### ❄️ Phase 4: The Unwrapping (Reveal)
+On the final day (admin trigged), the "Reveal" screen unlocks.
+*   Users finally see who their Secret Santa was.
+*   A physical meetup is organized for gift exchange.
+
+---
+
+## 🧩 System Features
+
+### 🏆 Leaderboard & Economy
+The competitive element driven by "Points".
+*   **Scoring**: Earn points by winning games, completing "Bad Descriptions", or fulfilling Daily Tasks.
+*   **Maintenance**: Admins can reset scores or ban users who exploit bugs.
+*   **Ranking**: Real-time sorting based on total points.
+
+### 💬 Communication Channels
+Dual-layer messaging for privacy and community.
+*   **Global Chat**: Public room for all batchmates to banter.
+*   **Santa Chat**: **Anonymous** 1-on-1 channel. Santa can message their Target without revealing their identity.
+
+### 🛡️ Admin God Mode
+Complete control over the game state.
+*   **Maintenance Mode**: Lock the app for updates.
+*   **Force Reveal**: Trigger the final event where everyone sees their Santa.
+*   **User Management**: Ban/Unban, Edit Profiles, Reset Passwords.
+
+---
+
+## 📂 Project Structure
+
+A closer look under the hood of our winter engine.
+
+```file-tree
+# ❄️ Secret Santa Project Root
+.
+├── 📂 backend/                     # 🦌 The Logic Center (Node.js)
+│   ├── 📄 server.mjs               # Main Express App & Routes
+│   ├── 📄 Dockerfile               # Backend Container Definitions
+│   └── 📄 package.json             # Dependencies (Express, Supabase-js, Mongoose)
+│
+├── 📂 frontend/                    # 🛷 The Visual Interface (React)
+│   ├── 📂 public/                  # Static Snowflakes & Manifests
+│   ├── 📂 src/
+│   │   ├── 📂 components/
+│   │   │   ├── 📂 admin/           # 🛡️ God Mode Dashboard
+│   │   │   ├── 📂 games/           # 🎮 TicTacToe, Flappy Santa, Bad Description
+│   │   │   ├── 📂 features/        # 🧩 Chat, Profile, Notifications
+│   │   │   └── 📂 common/          # 🎨 Reusable Christmas UI Elements
+│   │   ├── 📂 contexts/            # 🧠 Global State (Auth, Theme)
+│   │   ├── 📂 lib/                 # 🔌 API Connectors (Supabase, Fetch Wrappers)
+│   │   └── 📄 App.tsx              # Main Router & Layout
+│   └── 📄 Dockerfile               # Multi-stage Nginx Build
+│
+├── 📂 database/                    # 📜 The Sacred Texts (SQL)
+│   └── 📄 FINAL_FIX_V3.sql         # Core Schema & Tables
+│
+└── 📄 deploy_gcp.sh                # 🚀 One-Click Deploy Script
 ```
 
 ---
 
-## 🎨 UI Design "Photos" (Concept)
+## 🚀 Setup & Deployment
 
-Since we can't embed real-time screenshots in a markdown file easily, here is a visual representation of the UI vibe!
-
-### **User View: Winter Wonderland**
-```text
-+--------------------------------------------------+
-|  🎅 Secret Santa                   [Profile] [x] |
-|  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ |
-|  [  SNOW FALLING ANIMATION   *     *      *    ] |
-|                                                  |
-|  +----------------+  +------------------------+  |
-|  |   YOUR POINTS  |  |    DAYS TO GIFTING     |  |
-|  |      250 🏆    |  |          05 📅         |  |
-|  +----------------+  +------------------------+  |
-|                                                  |
-|  > TODAY'S TASKS:                                |
-|  [x] Upload Reindeer Selfie (+10pts)             |
-|  [ ] Sing Jingle Bells (Bonus)                   |
-|                                                  |
-|  > MINI GAMES:                                   |
-|  [ Tic-Tac-Toe ]  [ Memory Game ]  [ Mollywood ] |
-+--------------------------------------------------+
-```
-
-### **Admin View
-```text
-+--------------------------------------------------+
-|  >_ ADMIN_CONSOLE_v2.0               [EXIT]      |
-|  ----------------------------------------------- |
-|  > SYSTEM_STATUS: [ONLINE]                       |
-|  > ACTIVE_USERS: 142                             |
-|                                                  |
-|  +----------------+  +------------------------+  |
-|  | >_ ERROR_LOGS  |  | >_ CONTROL_PANEL       |  |
-|  | No errors...   |  | [GENERATE_PAIRS]       |  |
-|  | All systems go.|  | [FLUSH_REDIS_CACHE]    |  |
-|  |                |  | [TOGGLE_MAINTENANCE]   |  |
-|  +----------------+  +------------------------+  |
-|                                                  |
-|  >_ LATEST_ACTIVITY:                             |
-|  [10:42] User 'Santa' completed Task #42         |
-|  [10:45] New Registration: 'Elf_01'              |
-+--------------------------------------------------+
-```
+1.  **Install Dependencies**: `npm install` in both `frontend` and `backend`.
+2.  **Env Setup**: Copy `.env.example` to `.env` and fill in Supabase/DeltaAuth keys.
+3.  **Run Locally**:
+    *   Backend: `cd backend && npm run dev`
+    *   Frontend: `cd frontend && npm run dev`
+4.  **Deploy**: Run `./deploy_gcp.sh` to build containers and push to Cloud Run.
 
 ---
 
-## 🚀 Quick Start Guide
+## 🎅 Credits
 
-### 1. Setup
-```bash
-# Clone
-git clone https://github.com/your-repo/SecretSanta-2025.git
-cd SecretSanta-2025
+Built with ❄️, ☕, and a lot of 🍪 by **HarishAnnavisamy!!**.
 
-# Install
-pnpm install
-
-# Setup Env
-cp .env.example .env
-# (Fill in Supabase & DeltaAuth keys)
-```
-
-### 2. Database
-Run the SQL scripts in `database/archive` (start with `COMPLETE_DB_SETUP.sql`) in your Supabase SQL Editor.
-
-### 3. Run
-```bash
-pnpm dev
-```
-Visit `http://localhost:5174` and enjoy!
-
----
-
-## 📦 Deployment (Summary)
-
-**Recommended**: Google Cloud Run (Serverless)
-
-1. **Configure**: Update `.env` and `deploy_gcp.sh`.
-2. **Deploy**:
-   ```bash
-   chmod +x scripts/deployment/deploy_gcp.sh
-   ./scripts/deployment/deploy_gcp.sh
-   ```
-3. **Verify**: Update your Delta Auth Redirect URI to the new Cloud Run URL.
-
-*(See `docs/` folder for legacy detailed guides if needed, though this README is the single source of truth now!)*
-
----
-
-🌟 *Made with ❤️ HarishAnnavisamy" 🌟
+> *"May your commits be clean, your bugs be few, and your holidays be happy!"* 🟢

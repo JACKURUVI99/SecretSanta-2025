@@ -1,8 +1,13 @@
 -- ADD_SANTA_RUN_SETTING.sql
--- Adds the 'show_santa_run' toggle to the app_settings table
+-- Run this to enable the "Santa Run" toggle in Settings
 
-ALTER TABLE public.app_settings 
-ADD COLUMN IF NOT EXISTS show_santa_run BOOLEAN DEFAULT false;
+-- Check if column exists, if not add it
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='app_settings' AND column_name='show_santa_run') THEN
+        ALTER TABLE public.app_settings ADD COLUMN show_santa_run BOOLEAN DEFAULT false;
+    END IF;
+END $$;
 
--- Notify schema reload for Supabase clients
+-- Force schema reload so the API knows about the new column
 NOTIFY pgrst, 'reload schema';
