@@ -9,13 +9,10 @@
 ```
 
 # 🎅 Secret Santa 2025: NITT 🎄
-> *“Coding in a Winter Wonder-LAN”*
 
 <div align="center">
 
 ![Status](https://img.shields.io/badge/Status-Deployed-success?style=for-the-badge&logo=google-cloud&color=0F9D58)
-![Version](https://img.shields.io/badge/Version-2.0.26-blue?style=for-the-badge&color=4285F4)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge&color=F4B400)
 ![Theme](https://img.shields.io/badge/Theme-Winter_Wonderland-red?style=for-the-badge&color=DB4437)
 
 <br/>
@@ -36,7 +33,7 @@
 
 ---
 
-## 🎁 Project Overview
+##  Project Overview
 
 **Secret Santa 2025** is a highly interactive, gamified, and secure web application designed for the NIT Trichy community to celebrate the holiday season. Unlike traditional assignment scripts, this platform offers a comprehensive suite of features including **algorithmic pairing**, **anonymous messaging**, **real-time multiplayer games** (Tic-Tac-Toe, Beat the Grinch), and a **feature-rich Admin Dashboard**.
 
@@ -44,11 +41,11 @@ The system is built on a **Hybrid Split-Container Architecture**, leveraging the
 
 ---
 
-## 🏗️ Technology Stack
+##  Technology Stack
 
 We use a curated stack of modern technologies, organized by their role in our split-container architecture.
 
-### 🎨 Frontend (The Sleigh)
+###  Frontend (The Sleigh)
 | Tech | Role | Description |
 | :--- | :--- | :--- |
 | **React 18** <br> <img src="https://skillicons.dev/icons?i=react&theme=light" width="30"/> | **Library** | Component-based UI with Virtual DOM for snappy performance. |
@@ -56,7 +53,7 @@ We use a curated stack of modern technologies, organized by their role in our sp
 | **TailwindCSS** <br> <img src="https://skillicons.dev/icons?i=tailwind&theme=light" width="30"/> | **Styling** | Utility-first CSS for our "Neo-Brutalist" Christmas theme. |
 | **Vite** <br> <img src="https://skillicons.dev/icons?i=vite&theme=light" width="30"/> | **Build Tool** | Lightning-fast HMR and optimized production bundles. |
 
-### 🚀 Backend (The Elf Workshop)
+### Backend (The Elf Workshop)
 | Tech | Role | Description |
 | :--- | :--- | :--- |
 | **Node.js** <br> <img src="https://skillicons.dev/icons?i=nodejs&theme=light" width="30"/> | **Runtime** | Event-driven, non-blocking I/O runtime. |
@@ -192,4 +189,4 @@ A closer look under the hood of our winter engine.
 
 Built with ❄️, ☕, and a lot of 🍪 by **HarishAnnavisamy!!**.
 
-> *"May your commits be clean, your bugs be few, and your holidays be happy!"* 🟢
+
