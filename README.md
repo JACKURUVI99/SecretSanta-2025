@@ -186,6 +186,6 @@ A closer look under the hood of our winter engine.
 ---
 
 
-Built with ❄️, ☕, and a lot of 🍪 by **HarishAnnavisamy!!**.
+Built with ❄️, ☕, and a lot of 🍪 by **Harish**.
 
 
